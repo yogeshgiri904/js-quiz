@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 2021</title>
+</head>
+<body>
+    <p class="question" id="q1">1. Which of the following is elder brother among them ?</p>
+    <input type="radio" name="option" id="ankit" value="ankit">
+    <label for="ankit">Ankit</label><br>
+    <input type="radio" name="option" id="vishal" value="vishal">
+    <label for="vishal">Vishal</label><br>
+    <input type="radio" name="option" id="gaurav" value="gaurav">
+    <label for="gaurav">Gaurav</label><br>
+    <input type="radio" name="option" id="akash" value="akash">
+    <label for="akash">Akash</label><br><br>
+    <button type="button" onclick="checkButton()"> Submit </button> <br>
+    <br><br><p id="display"></p>
+</body>
+</html>
+<script>
+   function checkButton() {    
+            var selectedValue = document.querySelector(   
+                'input[name="option"]:checked');   
+                
+            if(selectedValue != null) {   
+                if(selectedValue.value == "vishal"){
+                    document.getElementById("display").innerHTML   
+                    = "Correct Answer"; 
+                }
+                else{
+                    document.getElementById("display").innerHTML   
+                    = "Incorrect Answer"; 
+                }
+            }   
+            else {   
+                document.getElementById("display").innerHTML   
+                    = "You have not selected any option";   
+            }   
+        }     
+</script>
