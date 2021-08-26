@@ -5,38 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz 2021</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            margin: 0px;
+            padding: 0px;
+        }
+        .main-container{
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .row{
+            display: inline-flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 1400px;
+            height: 100vh;
+            transform: translate(-0px);
+            transition: .5s;
+        }
+        .Quest-container{
+            width: 350px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        button{
+            padding: 3px 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="main-container">
         <div class="row" id="row">
             <div class="Quest-container">
-                <p>Enter your Question.</p><br>
+                <h3>Enter your Question.</h3><br>
                 <div class="input-bar">
                     <label for="Question">Question :</label>
                     <input type="text" name="Question" id="Question">
                 </div><br>
                 <div class="input-bar">
                     <label>Options :</label><br>
-                    <label for="Option A">A</label>
+                    <label for="Option A">A </label>
                     <input type="text" name="Option A" id="Option1">
                 </div><br>
                 <div class="input-bar">
-                    <label for="Option B">B</label>
+                    <label for="Option B">B </label>
                     <input type="text" name="Option B" id="Option2">
                 </div><br>
                 <div class="input-bar">
-                    <label for="Option C">C</label>
+                    <label for="Option C">C </label>
                     <input type="text" name="Option C" id="Option3">
                 </div><br>
                 <div class="input-bar">
-                    <label for="Option D">D</label>
+                    <label for="Option D">D </label>
                     <input type="text" name="Option D" id="Option4">
                 </div><br>
-                <br><br><button type="button" onclick="enter()"> Set </button>
+                <br><button type="button" onclick="enter()"> Set </button>
             </div>
 
             <div class="Quest-container">
-                <p>Provide the correct answer.</p>
+                <h3>Provide the correct answer.</h3>
                 <label for="quest" id="questcheck">Question</label><br><br>
                 <select name="select" id="select">
                     <option value="a" id="sop1">a</option>
@@ -44,11 +79,15 @@
                     <option value="c" id="sop3">c</option>
                     <option value="d" id="sop4">d</option>
                 </select>
-                <br><button type="button" onclick="answer()"> Submit </button>
+                <br>
+                <div class="buttons">
+                    <button type="button" onclick="back()"><</button>
+                    <button type="button" onclick="answer()"> Submit </button>
+                </div>
             </div>
 
             <div class="Quest-container">
-                <p>Here is your Quiz.</p>
+                <h3>Here is your Quiz.</h3>
                 <p class="Quest" id="q1">Question</p>
                 <div class="radio-bar">
                     <input type="radio" name="option" value="a">
@@ -66,12 +105,19 @@
                     <input type="radio" name="option" value="d">
                     <label for="d" id="d">d</label><br><br>
                 </div>
-                <button type="button" onclick="checkButton()"> Submit </button>
+                <div class="buttons">
+                    <button type="button" onclick="backagain()"><</button>
+                    <button type="button" onclick="checkButton()"> Submit </button>
+                </div>
                 <p id="error"></p>
             </div>
 
             <div class="Quest-container">
-                <p id="display"></p>
+                <p id="display"></p><br>
+                <div class="buttons">
+                    <button type="button" onclick="backagainagain()">New Question</button>
+                    <button type="button" onclick="checkButton()">Get Certificate</button>
+                </div>
             </div>
 
         </div>
@@ -107,12 +153,14 @@
         document.getElementById("d").innerHTML = Question1.OP4;
         document.getElementById("sop4").innerHTML = Question1.OP4;
 
+        document.getElementById("row").style.transform = "translate(-350px)";
     }
 
     function answer() {
         CorrectAns = document.getElementById("select").value;
         Question1.Correct = CorrectAns;
         
+        document.getElementById("row").style.transform = "translate(-700px)";
     }
 
     function checkButton() {    
@@ -120,18 +168,29 @@
         if(selectedValue != null) { 
             if(selectedValue.value == CorrectAns){
                 document.getElementById("display").innerHTML   
-                = "Correct Answer"; 
+                = "<b>HURREY!</b> <br> Correct Answer"; 
             }
             else{
                 document.getElementById("display").innerHTML   
-                = "Wrong Answer"; 
+                = "<b>Oops!</b> <br> Wrong Answer"; 
             }
+            document.getElementById("row").style.transform = "translate(-1050px)"; 
 
         }   
         else {   
             document.getElementById("error").innerHTML   
                 = "Please select any option ?";   
         }
+    }
+
+    function back(){
+        document.getElementById("row").style.transform = "translate(0px)"; 
+
+    }
+
+    function backagain(){
+        document.getElementById("row").style.transform = "translate(-350px)"; 
+
     }
 
 </script>
