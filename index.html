@@ -8,12 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <style>
         *{
             font-family: 'Dancing Script', cursive;
-            font-size: 20px;
+            font-size: 22px;
             margin: 0px;
             padding: 0px;
+        }
+        h2,h3,h4{
+            font-weight: 600;
         }
         .main-container{
             width: 100vw;
@@ -24,24 +28,33 @@
             display: inline-flex;
             justify-content: flex-start;
             align-items: center;
-            width: 1400px;
+            width: calc(100vw * 4);
             height: 100vh;
-            transform: translate(-0px);
+            transform: translate(0%);
             transition: .5s;
         }
         .Quest-container{
-            width: 350px;
+            width: 100vw;
             display: inline-flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
         button{
+            border-radius: 2px;
+            font-weight: 600;
             padding: 3px 10px;
+            cursor: pointer;
+        }
+        @media(max-width:720px){
+            *{
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
+
     <div class="main-container">
         <div class="row" id="row">
             <div class="Quest-container">
@@ -68,6 +81,7 @@
                     <input type="text" name="Option D" id="Option4">
                 </div><br>
                 <br><button type="button" onclick="enter()"> Set </button>
+                <p id="error1"></p>
             </div>
 
             <div class="Quest-container">
@@ -84,6 +98,7 @@
                     <button type="button" onclick="back()"><</button>
                     <button type="button" onclick="answer()"> Submit </button>
                 </div>
+                <p id="error2"></p>
             </div>
 
             <div class="Quest-container">
@@ -109,13 +124,13 @@
                     <button type="button" onclick="backagain()"><</button>
                     <button type="button" onclick="checkButton()"> Submit </button>
                 </div>
-                <p id="error"></p>
+                <p id="error3"></p>
             </div>
 
             <div class="Quest-container">
                 <p id="display"></p><br>
                 <div class="buttons">
-                    <button type="button" onclick="backagainagain()">New Question</button>
+                    <button type="button" onclick="reset()">New Question</button>
                     <button type="button" onclick="checkButton()">Get Certificate</button>
                 </div>
             </div>
@@ -124,73 +139,4 @@
     </div>
 </body>
 </html>
-<script>
-    class question{
-        constructor(inputQuest, inputOP1, inputOP2, inputOP3, inputOP4, inputCorrect){
-            this.Quest = inputQuest,
-            this.OP1 = inputOP1,
-            this.OP2 = inputOP2,
-            this.OP3 = inputOP3,
-            this.OP4 = inputOP4,
-            this.Correct = inputCorrect
-        }
-    }
-    function enter(){
-        var Question = document.getElementById("Question").value;
-        var Option1 = document.getElementById("Option1").value;
-        var Option2 = document.getElementById("Option2").value;
-        var Option3 = document.getElementById("Option3").value;
-        var Option4 = document.getElementById("Option4").value;
-        Question1 = new question(Question, Option1, Option2, Option3, Option4);
-        document.getElementById("q1").innerHTML = Question1.Quest;
-        document.getElementById("questcheck").innerHTML = Question1.Quest;
-        document.getElementById("a").innerHTML = Question1.OP1;
-        document.getElementById("sop1").innerHTML = Question1.OP1;
-        document.getElementById("b").innerHTML = Question1.OP2;
-        document.getElementById("sop2").innerHTML = Question1.OP2;
-        document.getElementById("c").innerHTML = Question1.OP3;
-        document.getElementById("sop3").innerHTML = Question1.OP3;
-        document.getElementById("d").innerHTML = Question1.OP4;
-        document.getElementById("sop4").innerHTML = Question1.OP4;
-
-        document.getElementById("row").style.transform = "translate(-350px)";
-    }
-
-    function answer() {
-        CorrectAns = document.getElementById("select").value;
-        Question1.Correct = CorrectAns;
-        
-        document.getElementById("row").style.transform = "translate(-700px)";
-    }
-
-    function checkButton() {    
-        var selectedValue = document.querySelector('input[name="option"]:checked'); 
-        if(selectedValue != null) { 
-            if(selectedValue.value == CorrectAns){
-                document.getElementById("display").innerHTML   
-                = "<b>HURREY!</b> <br> Correct Answer"; 
-            }
-            else{
-                document.getElementById("display").innerHTML   
-                = "<b>Oops!</b> <br> Wrong Answer"; 
-            }
-            document.getElementById("row").style.transform = "translate(-1050px)"; 
-
-        }   
-        else {   
-            document.getElementById("error").innerHTML   
-                = "Please select any option ?";   
-        }
-    }
-
-    function back(){
-        document.getElementById("row").style.transform = "translate(0px)"; 
-
-    }
-
-    function backagain(){
-        document.getElementById("row").style.transform = "translate(-350px)"; 
-
-    }
-
-</script>
+<script src="script.js"></script>
