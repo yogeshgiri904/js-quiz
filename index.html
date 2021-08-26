@@ -7,37 +7,131 @@
     <title>Quiz 2021</title>
 </head>
 <body>
-    <p class="question" id="q1">1. Which of the following is elder brother among them ?</p>
-    <input type="radio" name="option" id="ankit" value="ankit">
-    <label for="ankit">Ankit</label><br>
-    <input type="radio" name="option" id="vishal" value="vishal">
-    <label for="vishal">Vishal</label><br>
-    <input type="radio" name="option" id="gaurav" value="gaurav">
-    <label for="gaurav">Gaurav</label><br>
-    <input type="radio" name="option" id="akash" value="akash">
-    <label for="akash">Akash</label><br><br>
-    <button type="button" onclick="checkButton()"> Submit </button> <br>
-    <br><br><p id="display"></p>
+    <div class="main-container">
+        <div class="row" id="row">
+            <div class="Quest-container">
+                <p>Enter your Question.</p><br>
+                <div class="input-bar">
+                    <label for="Question">Question :</label>
+                    <input type="text" name="Question" id="Question">
+                </div><br>
+                <div class="input-bar">
+                    <label>Options :</label><br>
+                    <label for="Option A">A</label>
+                    <input type="text" name="Option A" id="Option1">
+                </div><br>
+                <div class="input-bar">
+                    <label for="Option B">B</label>
+                    <input type="text" name="Option B" id="Option2">
+                </div><br>
+                <div class="input-bar">
+                    <label for="Option C">C</label>
+                    <input type="text" name="Option C" id="Option3">
+                </div><br>
+                <div class="input-bar">
+                    <label for="Option D">D</label>
+                    <input type="text" name="Option D" id="Option4">
+                </div><br>
+                <br><br><button type="button" onclick="enter()"> Set </button>
+            </div>
+
+            <div class="Quest-container">
+                <p>Provide the correct answer.</p>
+                <label for="quest" id="questcheck">Question</label><br><br>
+                <select name="select" id="select">
+                    <option value="a" id="sop1">a</option>
+                    <option value="b" id="sop2">b</option>
+                    <option value="c" id="sop3">c</option>
+                    <option value="d" id="sop4">d</option>
+                </select>
+                <br><button type="button" onclick="answer()"> Submit </button>
+            </div>
+
+            <div class="Quest-container">
+                <p>Here is your Quiz.</p>
+                <p class="Quest" id="q1">Question</p>
+                <div class="radio-bar">
+                    <input type="radio" name="option" value="a">
+                    <label for="a" id="a">a</label><br>
+                </div>
+                <div class="radio-bar">
+                    <input type="radio" name="option" value="b">
+                    <label for="b" id="b">b</label><br>
+                </div>
+                <div class="radio-bar">
+                    <input type="radio" name="option" value="c">
+                    <label for="c" id="c">c</label><br>
+                </div>
+                <div class="radio-bar">
+                    <input type="radio" name="option" value="d">
+                    <label for="d" id="d">d</label><br><br>
+                </div>
+                <button type="button" onclick="checkButton()"> Submit </button>
+                <p id="error"></p>
+            </div>
+
+            <div class="Quest-container">
+                <p id="display"></p>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
 <script>
-   function checkButton() {    
-            var selectedValue = document.querySelector(   
-                'input[name="option"]:checked');   
-                
-            if(selectedValue != null) {   
-                if(selectedValue.value == "vishal"){
-                    document.getElementById("display").innerHTML   
-                    = "Hurrey! Correct Answer"; 
-                }
-                else{
-                    document.getElementById("display").innerHTML   
-                    = "Oops! Incorrect Answer"; 
-                }
-            }   
-            else {   
+    class question{
+        constructor(inputQuest, inputOP1, inputOP2, inputOP3, inputOP4, inputCorrect){
+            this.Quest = inputQuest,
+            this.OP1 = inputOP1,
+            this.OP2 = inputOP2,
+            this.OP3 = inputOP3,
+            this.OP4 = inputOP4,
+            this.Correct = inputCorrect
+        }
+    }
+    function enter(){
+        var Question = document.getElementById("Question").value;
+        var Option1 = document.getElementById("Option1").value;
+        var Option2 = document.getElementById("Option2").value;
+        var Option3 = document.getElementById("Option3").value;
+        var Option4 = document.getElementById("Option4").value;
+        Question1 = new question(Question, Option1, Option2, Option3, Option4);
+        document.getElementById("q1").innerHTML = Question1.Quest;
+        document.getElementById("questcheck").innerHTML = Question1.Quest;
+        document.getElementById("a").innerHTML = Question1.OP1;
+        document.getElementById("sop1").innerHTML = Question1.OP1;
+        document.getElementById("b").innerHTML = Question1.OP2;
+        document.getElementById("sop2").innerHTML = Question1.OP2;
+        document.getElementById("c").innerHTML = Question1.OP3;
+        document.getElementById("sop3").innerHTML = Question1.OP3;
+        document.getElementById("d").innerHTML = Question1.OP4;
+        document.getElementById("sop4").innerHTML = Question1.OP4;
+
+    }
+
+    function answer() {
+        CorrectAns = document.getElementById("select").value;
+        Question1.Correct = CorrectAns;
+        
+    }
+
+    function checkButton() {    
+        var selectedValue = document.querySelector('input[name="option"]:checked'); 
+        if(selectedValue != null) { 
+            if(selectedValue.value == CorrectAns){
                 document.getElementById("display").innerHTML   
-                    = "Please select any option.";   
-            }   
-        }     
+                = "Correct Answer"; 
+            }
+            else{
+                document.getElementById("display").innerHTML   
+                = "Wrong Answer"; 
+            }
+
+        }   
+        else {   
+            document.getElementById("error").innerHTML   
+                = "Please select any option ?";   
+        }
+    }
+
 </script>
