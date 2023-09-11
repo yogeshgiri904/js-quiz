@@ -1,1 +1,1 @@
-# quiz_2021
+# js quiz app
